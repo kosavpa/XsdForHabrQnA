@@ -1,0 +1,432 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://kte.test-web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://kte.test-web-service" targetNamespace="http://kte.test-web-service">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://kte.test-web-service">
+<!-- All client -->
+<xs:element name="getAllClientRequest">
+<xs:complexType>
+<xs:sequence> </xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAllClientResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="clients" type="tns:ClientList"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- All client -->
+<!-- Update client discount -->
+<xs:element name="updateClientDiscountRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ClientId" type="xs:long"/>
+<xs:element name="personalDiscount1" type="xs:int"/>
+<xs:element name="personalDiscount2" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="updateClientDiscountResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="client" type="tns:Client"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Update client discount -->
+<!-- Client statistic -->
+<xs:element name="getClientStatisticRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="clientId" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getClientStatisticResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="clientStatistic" type="tns:StatisticClient"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Client statistic -->
+<!-- All product -->
+<xs:element name="getAllProductRequest"/>
+<xs:element name="getAllProductResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="products" type="tns:ProductList"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- All product -->
+<!-- Additional product info -->
+<xs:element name="getAdditionalProductInfoRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="productId" type="xs:long"/>
+<xs:element name="clientId" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAdditionalProductInfoResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="additionalProductInfo" type="tns:AdditionalProductInfo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Additional product info -->
+<!-- Total price -->
+<xs:element name="getTotalPriceRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="totalPriceRequestList" type="tns:TotalPriseRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getTotalPriceResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="totalPriceResponse" type="tns:TotalPriceResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Total price -->
+<!-- Feedback product -->
+<xs:element name="createFeedbackProductRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="productId" type="xs:long"/>
+<xs:element name="clientId" type="xs:long"/>
+<xs:element name="amountStar" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createFeedbackProductResponce">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="additionalProductInfo" type="tns:AdditionalProductInfo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Feedback product -->
+<!-- Product statistic -->
+<xs:element name="getProductStatisticRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="productId" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getProductStatisticResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="productStatistic" type="tns:StatisticProduct"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Product statistic -->
+<!-- Create check -->
+<xs:element name="createCheckRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="clientId" type="xs:long"/>
+<xs:element name="totalPrice" type="xs:double"/>
+<xs:element maxOccurs="unbounded" name="totalPriceRequestList" type="tns:TotalPriseRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="createCheckResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="check" type="tns:Check"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<!-- Create check -->
+<xs:complexType name="Client">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="personalDiscount1" type="xs:int"/>
+<xs:element name="personalDiscount2" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="StatisticClient">
+<xs:sequence>
+<xs:element name="client" type="tns:Client"/>
+<xs:element name="amountCheck" type="xs:int"/>
+<xs:element name="totalCheckSum" type="xs:double"/>
+<xs:element name="totalCheckDiscountSum" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ClientList">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="client" type="tns:Client"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Product">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="price" type="xs:double"/>
+<xs:element name="discount" type="xs:int"/>
+<xs:element name="about" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ProductList">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="product" type="tns:Product"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AdditionalProductInfo">
+<xs:sequence>
+<xs:element name="productName" type="xs:string"/>
+<xs:element name="about" type="xs:string"/>
+<xs:element name="middleStar" type="xs:double"/>
+<xs:element name="client" type="tns:Client"/>
+<xs:element name="userRating" type="xs:int"/>
+<xs:element name="starsDistribution" type="tns:Map"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Map">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="mapEntry" type="tns:MapEntry"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MapEntry">
+<xs:sequence>
+<xs:element name="key" type="xs:int"/>
+<xs:element name="value" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TotalPriseRequest">
+<xs:sequence>
+<xs:element name="productId" type="xs:long"/>
+<xs:element name="amount" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TotalPriceResponse">
+<xs:sequence>
+<xs:element name="totalPrice" type="xs:double"/>
+<xs:element name="carrency" type="tns:Carrensy"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Carrensy">
+<xs:sequence>
+<xs:element name="carrensy_val">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="RUB"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="StatisticProduct">
+<xs:sequence>
+<xs:element name="product" type="tns:Product"/>
+<xs:element name="amountCheck" type="xs:int"/>
+<xs:element name="totalCostAtOriginalPrise" type="xs:double"/>
+<xs:element name="discountSum" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Check">
+<xs:sequence>
+<xs:element name="number" type="xs:long"/>
+<xs:element name="date" type="xs:string"/>
+<xs:element name="shopingList" type="tns:ShopingList"/>
+<xs:element name="client" type="tns:Client"/>
+<xs:element name="finalPrice" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShopingListElement">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="product" type="tns:Product"/>
+<xs:element name="amountProduct" type="xs:int"/>
+<xs:element name="sumDiscount" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShopingList">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="shopingListElement" type="tns:ShopingListElement"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="getAllProductResponse">
+<wsdl:part element="tns:getAllProductResponse" name="getAllProductResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getClientStatisticRequest">
+<wsdl:part element="tns:getClientStatisticRequest" name="getClientStatisticRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getProductStatisticResponse">
+<wsdl:part element="tns:getProductStatisticResponse" name="getProductStatisticResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="updateClientDiscountRequest">
+<wsdl:part element="tns:updateClientDiscountRequest" name="updateClientDiscountRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="createCheckResponse">
+<wsdl:part element="tns:createCheckResponse" name="createCheckResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getClientStatisticResponse">
+<wsdl:part element="tns:getClientStatisticResponse" name="getClientStatisticResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getTotalPriceRequest">
+<wsdl:part element="tns:getTotalPriceRequest" name="getTotalPriceRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getAllClientResponse">
+<wsdl:part element="tns:getAllClientResponse" name="getAllClientResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="updateClientDiscountResponse">
+<wsdl:part element="tns:updateClientDiscountResponse" name="updateClientDiscountResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="createCheckRequest">
+<wsdl:part element="tns:createCheckRequest" name="createCheckRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="createFeedbackProductRequest">
+<wsdl:part element="tns:createFeedbackProductRequest" name="createFeedbackProductRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getAdditionalProductInfoRequest">
+<wsdl:part element="tns:getAdditionalProductInfoRequest" name="getAdditionalProductInfoRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getTotalPriceResponse">
+<wsdl:part element="tns:getTotalPriceResponse" name="getTotalPriceResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getProductStatisticRequest">
+<wsdl:part element="tns:getProductStatisticRequest" name="getProductStatisticRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getAllClientRequest">
+<wsdl:part element="tns:getAllClientRequest" name="getAllClientRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getAllProductRequest">
+<wsdl:part element="tns:getAllProductRequest" name="getAllProductRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getAdditionalProductInfoResponse">
+<wsdl:part element="tns:getAdditionalProductInfoResponse" name="getAdditionalProductInfoResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="WSPort">
+<wsdl:operation name="getAllProduct">
+<wsdl:input message="tns:getAllProductRequest" name="getAllProductRequest"> </wsdl:input>
+<wsdl:output message="tns:getAllProductResponse" name="getAllProductResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getClientStatistic">
+<wsdl:input message="tns:getClientStatisticRequest" name="getClientStatisticRequest"> </wsdl:input>
+<wsdl:output message="tns:getClientStatisticResponse" name="getClientStatisticResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getProductStatistic">
+<wsdl:input message="tns:getProductStatisticRequest" name="getProductStatisticRequest"> </wsdl:input>
+<wsdl:output message="tns:getProductStatisticResponse" name="getProductStatisticResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="updateClientDiscount">
+<wsdl:input message="tns:updateClientDiscountRequest" name="updateClientDiscountRequest"> </wsdl:input>
+<wsdl:output message="tns:updateClientDiscountResponse" name="updateClientDiscountResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="createCheck">
+<wsdl:input message="tns:createCheckRequest" name="createCheckRequest"> </wsdl:input>
+<wsdl:output message="tns:createCheckResponse" name="createCheckResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getTotalPrice">
+<wsdl:input message="tns:getTotalPriceRequest" name="getTotalPriceRequest"> </wsdl:input>
+<wsdl:output message="tns:getTotalPriceResponse" name="getTotalPriceResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllClient">
+<wsdl:input message="tns:getAllClientRequest" name="getAllClientRequest"> </wsdl:input>
+<wsdl:output message="tns:getAllClientResponse" name="getAllClientResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="createFeedbackProduct">
+<wsdl:input message="tns:createFeedbackProductRequest" name="createFeedbackProductRequest"> </wsdl:input>
+</wsdl:operation>
+<wsdl:operation name="getAdditionalProductInfo">
+<wsdl:input message="tns:getAdditionalProductInfoRequest" name="getAdditionalProductInfoRequest"> </wsdl:input>
+<wsdl:output message="tns:getAdditionalProductInfoResponse" name="getAdditionalProductInfoResponse"> </wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="WSPortSoap11" type="tns:WSPort">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="getAllProduct">
+<soap:operation soapAction=""/>
+<wsdl:input name="getAllProductRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getAllProductResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getClientStatistic">
+<soap:operation soapAction=""/>
+<wsdl:input name="getClientStatisticRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getClientStatisticResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getProductStatistic">
+<soap:operation soapAction=""/>
+<wsdl:input name="getProductStatisticRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getProductStatisticResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="updateClientDiscount">
+<soap:operation soapAction=""/>
+<wsdl:input name="updateClientDiscountRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="updateClientDiscountResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="createCheck">
+<soap:operation soapAction=""/>
+<wsdl:input name="createCheckRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="createCheckResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getTotalPrice">
+<soap:operation soapAction=""/>
+<wsdl:input name="getTotalPriceRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getTotalPriceResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllClient">
+<soap:operation soapAction=""/>
+<wsdl:input name="getAllClientRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getAllClientResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="createFeedbackProduct">
+<soap:operation soapAction=""/>
+<wsdl:input name="createFeedbackProductRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+</wsdl:operation>
+<wsdl:operation name="getAdditionalProductInfo">
+<soap:operation soapAction=""/>
+<wsdl:input name="getAdditionalProductInfoRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getAdditionalProductInfoResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="WSPortService">
+<wsdl:port binding="tns:WSPortSoap11" name="WSPortSoap11">
+<soap:address location="http://localhost:8080/ws"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
